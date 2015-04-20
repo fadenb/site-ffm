@@ -1,6 +1,7 @@
 GLUON_BUILD_DIR := gluon-build
-GLUON_GIT_URL := https://github.com/freifunkMUC/gluon.git
-GLUON_GIT_REF := 4d7d6dd00172a91c107b086855f60bb180aca5dc
+GLUON_GIT_URL := https://github.com/freifunk-gluon/gluon.git
+GLUON_GIT_REF := 0b6a0be15299d6e5ebdb607c2ab66b590f97c623
+GLUON_TARGET := ar71xx-generic
 
 SECRET_KEY_FILE ?= ${HOME}/.gluon-secret-key
 
@@ -15,7 +16,8 @@ JOBS ?= $(shell cat /proc/cpuinfo | grep processor | wc -l)
 
 GLUON_MAKE := ${MAKE} -j ${JOBS} -C ${GLUON_BUILD_DIR} \
                       GLUON_RELEASE=${GLUON_RELEASE} \
-                      GLUON_BRANCH=${GLUON_BRANCH}
+                      GLUON_BRANCH=${GLUON_BRANCH} \
+                      GLUON_TARGET=${GLUON_TARGET}
 
 all: info
 	${MAKE} gluon-clean
