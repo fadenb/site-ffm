@@ -1,11 +1,12 @@
 GLUON_BUILD_DIR := gluon-build
 GLUON_GIT_URL := https://github.com/freifunk-gluon/gluon.git
-GLUON_GIT_REF := 0b6a0be15299d6e5ebdb607c2ab66b590f97c623
+GLUON_GIT_REF := 6bcd9b92d494f29de0d5d2bc41643d2d35ffc530
 GLUON_TARGET := ar71xx-generic
 
 SECRET_KEY_FILE ?= ${HOME}/.gluon-secret-key
 
-GLUON_RELEASE := $(shell git describe --tags 2>/dev/null)
+#GLUON_RELEASE := $(shell git describe --tags 2>/dev/null)
+GLUON_RELEASE := snapshot~20150428-upstream
 ifneq (,$(shell git describe --exact-match --tags 2>/dev/null))
   GLUON_BRANCH := stable
 else
@@ -20,9 +21,9 @@ GLUON_MAKE := ${MAKE} -j ${JOBS} -C ${GLUON_BUILD_DIR} \
                       GLUON_TARGET=${GLUON_TARGET}
 
 all: info
-	${MAKE} gluon-clean
+	#${MAKE} gluon-clean
 	${MAKE} manifest
-	${MAKE} gluon-clean
+	#${MAKE} gluon-clean
 
 info:
 	@echo
